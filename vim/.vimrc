@@ -102,6 +102,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 	let g:used_javascript_libs = 'jquery'
 
+	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' } " i3wm config file
+
 	" ??? Show tabs and spaces
 	"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 	Plug 'ntpeters/vim-better-whitespace'
