@@ -11,6 +11,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 "!!!`git` executable not found. vim-plug requires git. (fedora20i386, debian wheezy)
 
+if empty(glob('~/.fonts/DejaVu Sans Mono for Powerline.ttf'))
+
+	silent exec '!curl --create-dir -fLo ~/.fonts/DejaVu\ Sans\ Mono\ for\ Powerline.ttf bit.ly/1HzA6eE'
+endif
+
+
 " Run Vim-plug
 call plug#begin('~/.vim/plugged')
 
