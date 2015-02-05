@@ -1,0 +1,112 @@
+#
+# Tint2 config file
+#
+
+# ID 1 - Panel
+rounded = 0
+border_width = 0
+background_color = #171717 100
+
+# ID 2 - task active
+rounded = 0
+border_width = 0
+background_color = #d8d8d8 30
+
+# ID 3 - task
+rounded = 0
+border_width = 0
+background_color = #000000 0
+
+# ID 4 - urgent background id
+rounded = 0
+border_width = 1
+background_color = #888888 100
+border_color = #ff0000 0
+
+# ID 5 - taskbar
+rounded = 0
+border_width = 0
+background_color = #0000ff 0
+
+# ID 6 - active taskbar
+rounded = 0
+border_width = 0
+background_color = #d8d8d8 8
+
+# ID 7 - System tray
+rounded = 0
+border_width = 0
+background_color = #0c0c0c 100
+
+# ID 8 - Clock
+rounded = 0
+border_width = 0
+background_color = #000000 100
+
+# Panel
+panel_monitor = all
+panel_position = bottom center horizontal
+panel_items = TSC
+panel_size = 0 22
+panel_margin = 0 -1
+panel_padding = 0 0
+panel_dock = 0
+wm_menu = 1
+panel_layer = bottom
+panel_background_id = 1
+
+# Taskbar
+taskbar_mode = multi_desktop
+taskbar_padding = 2 0 2
+taskbar_background_id = 5
+taskbar_active_background_id = 6
+taskbar_name = 0
+
+# Tasks
+urgent_nb_of_blink = 3
+task_icon = 1
+task_text = 0
+task_centered = 1
+task_maximum_size = 32 32
+task_padding = 2 2
+task_background_id = 3
+
+task_active_background_id = 2
+task_urgent_background_id = 4
+task_iconified_background_id = 3
+task_tooltip = 0
+
+# Task Icons
+task_icon_asb = 80 0 0
+task_active_icon_asb = 100 0 0
+task_urgent_icon_asb = 100 0 0
+task_iconified_icon_asb = 80 0 0
+
+# System Tray
+systray = 1
+systray_padding = 8 2 7
+systray_sort = right2left
+systray_background_id = 7
+systray_icon_size = 24
+systray_icon_asb = 100 0 0
+
+# Clock
+time1_format = %H:%M
+time1_font = Liberation Sans 11
+clock_font_color = #cccccc 100
+clock_padding = 7 4
+clock_background_id = 8
+clock_lclick_command = gsimplecal
+
+# Mouse
+mouse_middle = close
+mouse_right = toggle
+mouse_scroll_up = toggle
+mouse_scroll_down = iconify
+
+# Battery, Tooltips & Panel autohide
+battery = 0
+tooltip = 0
+autohide = 0
+
+# End of config
