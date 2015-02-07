@@ -95,6 +95,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'hail2u/vim-css3-syntax',    { 'for': ['html', 'css'] } " CSS3
 	Plug 'tpope/vim-markdown',        { 'for': 'markdown' } " Markdown
 	Plug 'timcharper/textile.vim',    { 'for': 'textile' } " Textile
+	Plug 'elzr/vim-json',             { 'for': 'json' } " JSON
 	augroup VimCSS3Syntax
 		autocmd!
 		autocmd FileType css setlocal iskeyword+=-
