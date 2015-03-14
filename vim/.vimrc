@@ -281,6 +281,16 @@ command! WW w !sudo tee %:p > /dev/null
 
 nnoremap <Leader>G :Goyo<CR>
 
+
+" Tabs
+nnoremap <C-Tab> :tabnext<CR>
+nnoremap <C-S-Tab> :tabprevious<CR>
+" use Alt-Left and Alt-Right to move current tab to left or right
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+" CTRL-F4 is :tabclose
+nnoremap <C-F4> :tabclose<CR>
+
 " Autoreload .vimrc
 augroup reload_vimrc
 	autocmd!
