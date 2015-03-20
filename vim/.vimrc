@@ -169,6 +169,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'kien/ctrlp.vim'
 		let g:NERDTreeChDirMode       = 2
 		let g:ctrlp_working_path_mode = 'rw'
+		set wildignore+=*/.git/*,*/.svn/*,*/bower_components/*,*/node_modules/*
+
 
 	Plug 'tpope/vim-fugitive'
 		autocmd QuickFixCmdPost * Grep * CWindow
