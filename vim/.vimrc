@@ -82,13 +82,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ntpeters/vim-better-whitespace'
 		nmap <F3> :ToggleWhitespace<CR>
 
-	" Bufferlist
-	Plug 'jlanzarotta/bufexplorer'
-		let g:bufExplorerDisableDefaultKeyMapping=1
-		let g:bufExplorerDefaultHelp=0
-		let g:bufExplorerSplitRight=0
-		nnoremap <silent> <C-u> :BufExplorerVerticalSplit<CR>
-
 	" Higlighting enclosing tags
 	Plug 'Valloric/MatchTagAlways', { 'for': ['html', 'xhtml', 'xml', 'jinja', 'php'] }
 		let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'jinja' : 1, 'php' : 1, }
@@ -170,7 +163,7 @@ call plug#begin('~/.vim/plugged')
 		let g:NERDTreeChDirMode       = 2
 		let g:ctrlp_working_path_mode = 'rw'
 		set wildignore+=*/.git/*,*/.svn/*,*/bower_components/*,*/node_modules/*
-
+		nnoremap <silent> <C-u> :CtrlPBuffer<CR>
 
 	Plug 'tpope/vim-fugitive'
 		autocmd QuickFixCmdPost * Grep * CWindow
@@ -298,3 +291,4 @@ augroup reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
+
