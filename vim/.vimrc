@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tomasr/molokai'
 	" Tommorow-Night-Eighties color scheme
 	Plug 'chriskempson/vim-tomorrow-theme'
-	
+
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
 
@@ -285,6 +285,20 @@ nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 " CTRL-F4 is :tabclose
 nnoremap <C-F4> :tabclose<CR>
+
+
+
+" Vim hardcore mode
+inoremap <Up>    <NOP>
+noremap  <Up>    <NOP>
+inoremap <Down>  <NOP>
+noremap  <Down>  <NOP>
+inoremap <Left>  <NOP>
+noremap  <Left>  <NOP>
+inoremap <Right> <NOP>
+noremap  <Right> <NOP>
+
+
 
 " Autoreload .vimrc
 augroup reload_vimrc
