@@ -19,13 +19,18 @@ endif
 " Run Vim-plug
 call plug#begin('~/.vim/plugged')
 
-	" Molokai color scheme
+	" Color schemes
 	Plug 'tomasr/molokai'
-	" Tommorow-Night-Eighties color scheme
 	Plug 'chriskempson/vim-tomorrow-theme'
 
+	" Ack searching
+	Plug 'mileszs/ack.vim'
+
+	" Vim plugin, insert or delete brackets, parens, quotes in pair
+	Plug 'jiangmiao/auto-pairs'
+	" Distraction-free writing in Vim.
 	Plug 'junegunn/goyo.vim'
-	Plug 'junegunn/limelight.vim'
+		nnoremap <F11> :Goyo<CR>
 
 	" Editorconfig plugin (see: http://editorconfig.org/)
 	Plug 'editorconfig/editorconfig-vim'
@@ -67,7 +72,6 @@ call plug#begin('~/.vim/plugged')
 		let g:airline#extensions#tabline#enabled = 1
 		let g:airline_powerline_fonts = 1
 		let g:airline_theme='molokai'
-		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
 
 	" Tab/space higlighting
 	Plug 'Yggdroot/indentLine'
@@ -79,12 +83,17 @@ call plug#begin('~/.vim/plugged')
 		let g:indentLine_color_term = 239
 
 	" Show trailing whitespace characters (tabs & spaces)
+	" Fix spaces :StripWhitespace
 	Plug 'ntpeters/vim-better-whitespace'
-		nmap <F3> :ToggleWhitespace<CR>
 
 	" Higlighting enclosing tags
 	Plug 'Valloric/MatchTagAlways', { 'for': ['html', 'xhtml', 'xml', 'jinja', 'php'] }
 		let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1, 'jinja' : 1, 'php' : 1, }
+
+	" Autoclose (x)HTML tags
+	Plug 'alvan/vim-closetag', { 'for': ['html', 'xhtml', 'xml', 'xsl'] }
+	let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xsl,*.xml"
+
 
 	" Syntax highlighting
 	Plug 'digitaltoad/vim-jade',         { 'for': 'jade' }                   " Jade
@@ -129,13 +138,6 @@ call plug#begin('~/.vim/plugged')
 	"let g:syntastic_css_checkers        = ['csslint'  ] " sudo npm install -g csslint
 	"let g:syntastic_css_csslint_args    = '--ignore=zero-units'
 
-	" Colors highlighting
-	"Plug 'skammer/vim-css-color', { 'for': ['css', 'sass', 'scss', 'less', 'styl'] }
-
-	"Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'stylus'] }
-
-	"Plug 'chrisbra/Colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'stylus'] }
-
 	Plug 'scrooloose/nerdtree'
 		" Close (when left only NT)
 		autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -143,7 +145,6 @@ call plug#begin('~/.vim/plugged')
 		map <C-n> :NERDTreeToggle<CR>
 
 	Plug 'majutsushi/tagbar'
-		" !!! Install exuberant-ctags
 		let g:tagbar_left = 1
 		let g:tagbar_width = 30
 		let g:tagbar_autoclose = 1
@@ -180,6 +181,9 @@ set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 imap <C-a> <C-^>
 cmap <C-a> <C-^>
+
+
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
 
 
 if (exists('+colorcolumn'))
@@ -265,7 +269,6 @@ set showmatch
 set tabstop=4
 set shiftwidth=4
 set smarttab
-set smartindent
 
 " Fix commands write & quit
 cabbr W w
@@ -274,7 +277,6 @@ cabbr Q q
 " Write with sudo trick (see: http://git.io/NIPR)
 command! WW w !sudo tee %:p > /dev/null
 
-nnoremap <Leader>G :Goyo<CR>
 
 
 " Tabs
