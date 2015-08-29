@@ -127,6 +127,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Keithbsmiley/investigate.vim'
 		nnoremap <F1> :call investigate#Investigate()<CR>
 
+	" Code completion
+	Plug 'Valloric/YouCompleteMe'
+
 	"Plug 'scrooloose/syntastic'
 	"let g:syntastic_auto_jump           = 1
 	"let g:syntastic_error_symbol        = '✖'
