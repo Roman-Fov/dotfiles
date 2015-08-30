@@ -130,7 +130,8 @@ call plug#begin('~/.vim/plugged')
 	" Code completion
 	Plug 'Valloric/YouCompleteMe'
 
-	"Plug 'scrooloose/syntastic'
+	Plug 'scrooloose/syntastic'
+	let g:syntastic_enable_signs=1
 	"let g:syntastic_auto_jump           = 1
 	"let g:syntastic_error_symbol        = '✖'
 	"let g:syntastic_warning_symbol      = '►'
