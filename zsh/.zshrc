@@ -22,7 +22,7 @@ alias bi='bower install'
 alias bl='bower list'
 alias bs='bower search'
 # Better than grep
-alias grep='ack -a'
+alias grep='ack -k'
 # Where I am?
 alias lll='pwd'
 # ls aliases
