@@ -1,20 +1,21 @@
-" .vimrc file
-" Author: Roman Fov <roman.fov@gmail.com>
-" Url: https://github.com/Roman-Fov/dotfiles
+" ====================================================================
+" My vim config.
+" https://github.com/Roman-Fov/dotfiles
+" ====================================================================
 
-
-
-" Vim-plug installation
+" ====================================================================
+" Vim-plug installation (plugin manager)
+" ====================================================================
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent exec '!curl --create-dir -fLo ~/.vim/autoload/plug.vim http://git.io/VgrSsw'
 endif
 
-" Install fonts with Powerline/Airline support
+" ====================================================================
+" Install DejaVu Sans Mono with Powerline/Airline support
+" ====================================================================
 if empty(glob('~/.fonts/DejaVu Sans Mono for Powerline.ttf'))
 	silent exec '!curl --create-dir -fLo ~/.fonts/DejaVu\ Sans\ Mono\ for\ Powerline.ttf http://git.io/bhtZ'
 endif
-
-
 
 " Run Vim-plug
 call plug#begin('~/.vim/plugged')
@@ -23,8 +24,28 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tomasr/molokai'
 	Plug 'chriskempson/vim-tomorrow-theme'
 
+
+
 	" Ack searching
 	Plug 'mileszs/ack.vim'
+	" Incsearch.vim. Highlights all matches.
+	Plug 'haya14busa/incsearch.vim'
+	set hlsearch
+	let g:incsearch#auto_nohlsearch = 1
+	map /  <Plug>(incsearch-forward)
+	map ?  <Plug>(incsearch-backward)
+	map g/ <Plug>(incsearch-stay)
+	map n  <Plug>(incsearch-nohl-n)
+	map N  <Plug>(incsearch-nohl-N)
+	map *  <Plug>(incsearch-nohl-*)
+	map #  <Plug>(incsearch-nohl-#)
+	map g* <Plug>(incsearch-nohl-g*)
+	map g# <Plug>(incsearch-nohl-g#)
+	Plug 'haya14busa/incsearch-fuzzy.vim'
+	let g:incsearch#auto_nohlsearch = 1
+	map z/ <Plug>(incsearch-fuzzy-/)
+	map z? <Plug>(incsearch-fuzzy-?)
+	map zg/ <Plug>(incsearch-fuzzy-stay)
 
 	" Vim plugin, insert or delete brackets, parens, quotes in pair
 	Plug 'jiangmiao/auto-pairs'
@@ -110,6 +131,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }                     " i3wm config file
 	Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }             " JavaScript
 	Plug 'pangloss/vim-javascript',      { 'for': 'javascript' }             " JavaScript
+	Plug 'SevInf/vim-bemhtml',           { 'for': 'bemhtml' }
 		let javascript_enable_domhtmlcss = 1
 	Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }   " JavaScript Libraries
 		let g:used_javascript_libs = 'jquery'
@@ -122,10 +144,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mattn/emmet-vim', { 'for' : ['html','php','xhtml','css','sass','scss','less'] }
 		au FileType html,php,css,sass,scss,less imap <expr>jk   emmet#expandAbbrIntelligent("\<tab>")
 		au FileType html,php                    imap <C-\>      <CR><CR><Esc>ki<Tab>
-
-	" Search in lang docs
-	Plug 'Keithbsmiley/investigate.vim'
-		nnoremap <F1> :call investigate#Investigate()<CR>
 
 	" Code completion
 	Plug 'Valloric/YouCompleteMe'
@@ -142,7 +160,13 @@ call plug#begin('~/.vim/plugged')
 	"let g:syntastic_css_checkers        = ['csslint'  ] " sudo npm install -g csslint
 	"let g:syntastic_css_csslint_args    = '--ignore=zero-units'
 
-	Plug 'scrooloose/nerdtree'
+	Plug 'csscomb/vim-csscomb'
+	autocmd FileType stylus,css noremap <buffer> <leader>bc :CSScomb<CR>
+	autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
+
+
+
+	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 		" Close (when left only NT)
 		autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 		" Toogle Nerdtree bar
@@ -156,6 +180,8 @@ call plug#begin('~/.vim/plugged')
 		let g:tagbar_indent = 1
 		let g:tagbar_autopreview = 1
 		nmap <C-m> :TagbarToggle<CR>
+
+	Plug 'parkr/vim-jekyll' " jekyll
 
 	Plug 'scrooloose/nerdcommenter'
 		let mapleader = ","
@@ -178,18 +204,6 @@ call plug#end()
 
 " Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" International keyboard switch (Ctrl-^ or Ctrl-a (insert & commandline))
-set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
-highlight lCursor guifg=NONE guibg=Cyan
-imap <C-a> <C-^>
-cmap <C-a> <C-^>
-
-
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
-
-
 if (exists('+colorcolumn'))
 	set colorcolumn=100
 endif
@@ -209,8 +223,6 @@ endif
     " Spell check
 
 	"!!! :setlocal spell spelllang=ru_yo,en_us
-
-
     "setlocal spell spelllang=
     "setlocal nospell
     "function ChangeSpellLang()
@@ -229,39 +241,8 @@ endif
     " map spell on/off for English/Russian
 	"map <F11> <Esc>:call ChangeSpellLang()<CR>
 
-
-set laststatus=2
-
-set number
-set nuw=4
-
 set autoindent
 set smartindent
-
-" Не тормозить при скролинге
-set lazyredraw
-" Перечитывать файлы
-set autoread
-
-set showcmd
-" Enable wildmenu
-set wildmenu
-" Количество строк под курсором при прокрутке
-set scrolloff=4
-
-
-
-" Ignore case when searching
-set ignorecase smartcase
-
-" Enable search highlighting
-set hlsearch
-
-" Highlight current line
-set cursorline
-
-" Hide the mouse when typing text
-set mousehide
 
 set splitbelow
 set splitright
@@ -274,15 +255,6 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 
-" Fix commands write & quit
-cabbr W w
-cabbr Q q
-
-" Write with sudo trick (see: http://git.io/NIPR)
-command! WW w !sudo tee %:p > /dev/null
-
-
-
 " Tabs
 nnoremap <C-Tab> :tabnext<CR>
 nnoremap <C-S-Tab> :tabprevious<CR>
@@ -292,6 +264,40 @@ nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 " CTRL-F4 is :tabclose
 nnoremap <C-F4> :tabclose<CR>
 
+" ====================================================================
+" General
+" ====================================================================
+
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+
+" Do not redraw while executing macros
+set lazyredraw
+
+" Show partial cmdline
+set showcmd
+
+" Enable comandline tab completion menu
+set wildmenu
+if exists("&wildignorecase")
+	set wildignorecase " Ignorecase cmdline tab completion
+endif
+
+" Displaying statusline always
+set laststatus=2
+
+" Number of lines to keep above and below the cursor
+set scrolloff=4
+
+" Display line numbers
+set number
+" Set width of the column used for numbering
+set numberwidth=4
+
+" Highlight current line
+set cursorline
+
+" Autoreload files on change
+set autoread
 
 
 " Vim hardcore mode
@@ -306,7 +312,60 @@ noremap  <Right> <NOP>
 
 
 
+" ====================================================================
+" Keyboard layout
+" ====================================================================
+
+" International keyboard switch (Ctrl-^ or Ctrl-a (insert & commandline))
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+
+highlight lCursor guifg=NONE guibg=Cyan
+imap <C-a> <C-^>
+cmap <C-a> <C-^>
+
+" ====================================================================
+" Autofix commands
+" ====================================================================
+
+" Fix write and quit commands
+cabbr W w
+cabbr Q q
+
+" Write with sudo trick (see: http://git.io/NIPR)
+command! WW w !sudo tee %:p > /dev/null
+
+
+" ====================================================================
+" Search
+" ====================================================================
+
+" Start searching when you type the first character of the search string
+set incsearch
+
+" Ignorecase searching
+set ignorecase smartcase
+
+" Enable seach highlighting
+set hlsearch
+
+set wrapscan
+
+" ====================================================================
+" Editing
+" ====================================================================
+
+" Put only one space after '.', '?', '!' with a join command
+set nojoinspaces
+
+" Hide the mouse when typing text
+set mousehide
+
+
+" ====================================================================
 " Autoreload .vimrc
+" ====================================================================
 augroup reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
