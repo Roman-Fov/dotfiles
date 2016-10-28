@@ -11,6 +11,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 export PATH='/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'
 export PATH=./node_modules/.bin:$PATH # BEM ENB
 
+
 source $ZSH/oh-my-zsh.sh
 
 alias e='vim'
@@ -28,3 +29,5 @@ alias lll='pwd'
 # ls aliases
 alias LS='ls -lAcv --block-size=K'
 alias lslast='ls -ltc'
+# tmux
+alias tmux='tmux attach || tmux new'
