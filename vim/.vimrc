@@ -30,12 +30,10 @@ call plug#begin('~/.vim/plugged')
 	" ================================================================
 	" Search
 	" ================================================================
-	" !install ack-grep
 	" !install silversearcher-ag
-	Plug 'mileszs/ack.vim'
-	if executable('ag')
-		let g:ackprg = 'ag --vimgrep'
-	endif
+	Plug 'rking/ag.vim'
+		let g:ag_working_path_mode="r"
+
 	Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-fuzzy.vim'
 		let g:incsearch#auto_nohlsearch = 1
 		map / <Plug>(incsearch-forward)
@@ -252,6 +250,10 @@ call plug#begin('~/.vim/plugged')
 		let g:ctrlp_working_path_mode = 'rw'
 		set wildignore+=*/.git/*,*/.svn/*,*/bower_components/*,*/node_modules/*
 		nnoremap <silent> <C-u> :CtrlPBuffer<CR>
+		if executable('ag')
+			let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+			let g:ctrlp_use_caching = 0
+		endif
 	"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	"Plug 'vim-ctrlspace/vim-ctrlspace'
 
@@ -289,6 +291,10 @@ nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 " CTRL-F4 is :tabclose
 nnoremap <C-F4> :tabclose<CR>
 
+set smarttab
+set shiftwidth=4
+set tabstop=4
+set autoindent smartindent
 
 " ====================================================================
 " Fonts
@@ -311,7 +317,6 @@ if exists("&wildignorecase")
 endif
 set laststatus=2 " Displaying statusline always
 
-
 " ====================================================================
 " Search
 " ====================================================================
@@ -327,11 +332,7 @@ set wrapscan
 " ====================================================================
 " Editing
 " ====================================================================
-set tabstop=4
-set shiftwidth=4
-set smarttab
 set splitbelow
-set autoindent smartindent
 set showmatch
 " Put only one space after '.', '?', '!' with a join command
 set nojoinspaces
