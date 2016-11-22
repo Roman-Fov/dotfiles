@@ -17,6 +17,8 @@ if empty(glob('~/.fonts/DejaVu Sans Mono for Powerline.ttf'))
 	silent exec '!curl --create-dir -fLo ~/.fonts/DejaVu\ Sans\ Mono\ for\ Powerline.ttf http://git.io/bhtZ' " ???
 endif
 
+let mapleader = ','
+
 " Run Vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -33,6 +35,8 @@ call plug#begin('~/.vim/plugged')
 	" !install silversearcher-ag
 	Plug 'rking/ag.vim'
 		let g:ag_working_path_mode="r"
+		map <leader>g :Ag
+		nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 	Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-fuzzy.vim'
 		let g:incsearch#auto_nohlsearch = 1
