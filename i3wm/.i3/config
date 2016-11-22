@@ -126,6 +126,7 @@ bindsym $mod+l exec "scrot -q1 $lock_img && convert $lock_img -quality 10 -blur 
 new_window normal 1px
 
 for_window [window_role="browser"] border pixel 0
+for_window [class="Vivaldi-stable"] border pixel 0
 for_window [class="jetbrains-phpstorm"] border pixel 0
 for_window [class="URxvt"] border pixel 0
 for_window [class="Icedove" instance="Msgcompose"] floating enable
@@ -133,6 +134,7 @@ for_window [class="Dunst"] floating enable
 for_window [class="feh"] floating enable
 
 for_window [window_role="task_dialog"] floating enable
+for_window [window_role="app"] floating enable
 bindsym $mod+r mode "resize"
 
 bar {
@@ -153,6 +155,7 @@ bar {
 
 # application hotkeys
 bindsym $mod+q exec gvim
+bindsym $mod+w exec vivaldi
 bindsym $mod+p exec ~/PhpStorm-145.258.2/bin/phpstorm.sh
 bindsym $mod+a exec thunar
 
