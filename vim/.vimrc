@@ -245,7 +245,7 @@ call plug#begin('~/.vim/plugged')
 		let g:syntastic_javascript_checkers = ['jshint'] " sudo npm install -g jshint
 		"let g:syntastic_html_checkers       = ['jshint'   ] " sudo npm install -g jshint
 		let g:syntastic_css_checkers        = ['csslint'] " sudo npm install -g csslint
-		let g:syntastic_css_csslint_args    = '--ignore=zero-units'
+		let g:syntastic_css_csslint_args    = '--ignore=zero-units,order-alphabetical'
 
 
 	" Fuzzy finder for Vim
