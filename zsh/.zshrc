@@ -10,7 +10,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 export PATH='/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'
 export PATH=./node_modules/.bin:$PATH # BEM ENB
-
+export PATH=~/.local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
