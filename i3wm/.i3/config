@@ -140,7 +140,7 @@ bindsym $mod+r mode "resize"
 bar {
 	#status_command i3status | i3-wsbar -c "dzen2 х% х -dock"
 	#status_command conky -c ~/.confconky | dzen2
-	status_command i3status --config ~/.i3/i3status.conf
+	status_command i3status --config ~/.config/.i3/i3status.conf
 	colors {
 		background #1e1e1e
 		statusline #eeeeee
@@ -155,8 +155,8 @@ bar {
 
 # application hotkeys
 bindsym $mod+q exec gvim
+bindsym $mod+q exec pstorm
 bindsym $mod+w exec vivaldi
-bindsym $mod+p exec ~/PhpStorm-163.10504.2/bin/phpstorm.sh
 bindsym $mod+a exec thunar
 
 
